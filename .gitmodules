@@ -1,0 +1,3 @@
+[submodule "specs/PEFF"]
+	path = sources/PEFF
+	url = git@github.com:HUPO-PSI/PEFF.git
