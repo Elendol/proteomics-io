@@ -1,6 +1,9 @@
 PEFF: A Common Sequence Database Format for Proteomics
+======================================================
 
-*Status of this document*
+
+{% note %}
+**Status of this document:**
 
 This document provides information to the proteomics community about a
 common sequence database format for proteomics. Distribution is
@@ -8,7 +11,9 @@ unlimited.
 
 Version 1.0 FINAL
 
-# *Abstract*
+{% endnote %}
+
+## Abstract
 
 The Human Proteome Organisation (HUPO) Proteomics Standards Initiative
 (PSI) defines community standards for data representation in proteomics
@@ -32,130 +37,60 @@ appropriate converters that can be incorporated into processing tools.
 Further detailed information, including any updates to this document,
 examples, and validators, is available at <http://www.psidev.info/peff>.
 
-*Contents*
+## Contents
 
-[Abstract [1](#abstract)](#abstract)
+- [PEFF: A Common Sequence Database Format for Proteomics](#peff-a-common-sequence-database-format-for-proteomics)
+  - [Abstract](#abstract)
+  - [Contents](#contents)
+  - [Introduction](#introduction)
+    - [Description of the need](#description-of-the-need)
+    - [Requirements](#requirements)
+    - [Issues to be addressed](#issues-to-be-addressed)
+  - [Notational Conventions](#notational-conventions)
+  - [The Format Implementation](#the-format-implementation)
+    - [The documentation](#the-documentation)
+    - [Relationship to other specifications](#relationship-to-other-specifications)
+    - [The common sequence database format description](#the-common-sequence-database-format-description)
+      - [PEFF file section 1: The file header section](#peff-file-section-1-the-file-header-section)
+        - [Format of the file header section](#format-of-the-file-header-section)
+      - [**Defining custom keys in the sequence database description block for use in the sequence entries section**](#defining-custom-keys-in-the-sequence-database-description-block-for-use-in-the-sequence-entries-section)
+      - [**Section 2: The individual sequence entries section**](#section-2-the-individual-sequence-entries-section)
+      - [**Recommendations on and order of the keys in a description line**](#recommendations-on-and-order-of-the-keys-in-a-description-line)
+      - [**Definition of OptionalTag elements**](#definition-of-optionaltag-elements)
+      - [**Definition of complex header keys**](#definition-of-complex-header-keys)
+      - [**Variant header key**](#variant-header-key)
+      - [**VariantSimple header key**](#variantsimple-header-key)
+      - [**VariantComplex header key**](#variantcomplex-header-key)
+      - [**ModResUnimod header key**](#modresunimod-header-key)
+      - [**ModResPsi header key**](#modrespsi-header-key)
+      - [**ModRes header key**](#modres-header-key)
+      - [**Processed header key**](#processed-header-key)
+    - [**Advanced features for proteoforms and other combinations of annotations**](#advanced-features-for-proteoforms-and-other-combinations-of-annotations)
+      - [**Long form recommendation for Proteoforms: The ProteoformDb=true key-value pair**](#long-form-recommendation-for-proteoforms-the-proteoformdbtrue-key-value-pair)
+      - [](#)
+      - [**Annotation identifiers enabling compact form recommendation for Proteoforms: The HasAnnotationIdentifiers=true key-value pair**](#annotation-identifiers-enabling-compact-form-recommendation-for-proteoforms-the-hasannotationidentifierstrue-key-value-pair)
+      - [](#-1)
+    - [**Additional considerations**](#additional-considerations)
+      - [**Representation of splicing variants**](#representation-of-splicing-variants)
+      - [**Representation of processed sequences**](#representation-of-processed-sequences)
+      - [**File extension**](#file-extension)
+      - [**PEFF File Validation**](#peff-file-validation)
+      - [**PEFF Reference Implementation**](#peff-reference-implementation)
+  - [Authors Information](#authors-information)
+  - [Contributors](#contributors)
+  - [Intellectual Property Statement](#intellectual-property-statement)
+  - [Copyright Notice](#copyright-notice)
+  - [Glossary](#glossary)
+    - [**Key**](#key)
+    - [**Item**](#item)
+    - [**Component**](#component)
+    - [**Tag / OptionalTag**](#tag--optionaltag)
+  - [References](#references)
 
-[1. Introduction [3](#introduction)](#introduction)
 
-[**1.1** **Description of the need**
-[3](#description-of-the-need)](#description-of-the-need)
+## Introduction
 
-[**1.2** **Requirements** [3](#requirements)](#requirements)
-
-[**1.3** **Issues to be addressed**
-[4](#issues-to-be-addressed)](#issues-to-be-addressed)
-
-[2. Notational Conventions
-[4](#notational-conventions)](#notational-conventions)
-
-[3. The Format Implementation
-[4](#the-format-implementation)](#the-format-implementation)
-
-[**3.1** **The documentation**
-[4](#the-documentation)](#the-documentation)
-
-[**3.2** **Relationship to other specifications**
-[5](#relationship-to-other-specifications)](#relationship-to-other-specifications)
-
-[**3.3** **The common sequence database format description**
-[5](#the-common-sequence-database-format-description)](#the-common-sequence-database-format-description)
-
-[**3.3.1** **PEFF file section 1: The file header section**
-[6](#peff-file-section-1-the-file-header-section)](#peff-file-section-1-the-file-header-section)
-
-[**3.3.2** **Defining custom keys in the sequence database description
-block for use in the sequence entries section**
-[7](#defining-custom-keys-in-the-sequence-database-description-block-for-use-in-the-sequence-entries-section)](#defining-custom-keys-in-the-sequence-database-description-block-for-use-in-the-sequence-entries-section)
-
-[**3.3.3** **Section 2: The individual sequence entries section**
-[8](#section-2-the-individual-sequence-entries-section)](#section-2-the-individual-sequence-entries-section)
-
-[**3.3.4** **Recommendations on and order of the keys in a description
-line**
-[11](#recommendations-on-and-order-of-the-keys-in-a-description-line)](#recommendations-on-and-order-of-the-keys-in-a-description-line)
-
-[**3.3.5** **Definition of OptionalTag elements**
-[11](#definition-of-optionaltag-elements)](#definition-of-optionaltag-elements)
-
-[**3.3.6** **Definition of complex header keys**
-[11](#definition-of-complex-header-keys)](#definition-of-complex-header-keys)
-
-[**3.3.7** **Variant header key**
-[11](#variant-header-key)](#variant-header-key)
-
-[**3.3.8** **VariantSimple header key**
-[11](#variantsimple-header-key)](#variantsimple-header-key)
-
-[**3.3.9** **VariantComplex header key**
-[12](#variantcomplex-header-key)](#variantcomplex-header-key)
-
-[**3.3.10** **ModResUnimod header key**
-[12](#modresunimod-header-key)](#modresunimod-header-key)
-
-[**3.3.11** **ModResPsi header key**
-[13](#modrespsi-header-key)](#modrespsi-header-key)
-
-[**3.3.12** **ModRes header key**
-[14](#modres-header-key)](#modres-header-key)
-
-[**3.3.13** **Processed header key**
-[15](#processed-header-key)](#processed-header-key)
-
-[**3.4** **Advanced features for proteoforms and other combinations of
-annotations**
-[15](#advanced-features-for-proteoforms-and-other-combinations-of-annotations)](#advanced-features-for-proteoforms-and-other-combinations-of-annotations)
-
-[**3.4.1** **Long form recommendation for Proteoforms: The
-ProteoformDb=true key-value pair**
-[15](#long-form-recommendation-for-proteoforms-the-proteoformdbtrue-key-value-pair)](#long-form-recommendation-for-proteoforms-the-proteoformdbtrue-key-value-pair)
-
-[**3.4.2** **Annotation identifiers enabling compact form recommendation
-for Proteoforms: The HasAnnotationIdentifiers=true key-value pair**
-[15](#annotation-identifiers-enabling-compact-form-recommendation-for-proteoforms-the-hasannotationidentifierstrue-key-value-pair)](#annotation-identifiers-enabling-compact-form-recommendation-for-proteoforms-the-hasannotationidentifierstrue-key-value-pair)
-
-[**3.5** **Additional considerations**
-[17](#additional-considerations)](#additional-considerations)
-
-[**3.5.1** **Representation of splicing variants**
-[17](#representation-of-splicing-variants)](#representation-of-splicing-variants)
-
-[**3.5.2** **Representation of processed sequences**
-[17](#representation-of-processed-sequences)](#representation-of-processed-sequences)
-
-[**3.5.3** **File extension** [17](#file-extension)](#file-extension)
-
-[**3.5.4** **PEFF File Validation**
-[17](#peff-file-validation)](#peff-file-validation)
-
-[**3.5.5** **PEFF Reference Implementation**
-[17](#peff-reference-implementation)](#peff-reference-implementation)
-
-[4. Authors Information
-[18](#authors-information)](#authors-information)
-
-[5. Contributors [18](#contributors)](#contributors)
-
-[6. Intellectual Property Statement
-[19](#intellectual-property-statement)](#intellectual-property-statement)
-
-[7. Copyright Notice [19](#copyright-notice)](#copyright-notice)
-
-[8. Glossary [19](#_Toc68475991)](#_Toc68475991)
-
-[**8.1** **Key** [20](#key)](#key)
-
-[**8.2** **Item** [20](#item)](#item)
-
-[**8.3** **Component** [20](#component)](#component)
-
-[**8.4** **Tag / OptionalTag** [20](#tag-optionaltag)](#tag-optionaltag)
-
-[9. References [20](#references)](#references)
-
-# Introduction
-
-## **Description of the need**
+### Description of the need
 
 One of the main goals of proteomics is to identify and quantify proteins
 in complex biological samples. This is achieved using mass spectrometry
@@ -208,32 +143,26 @@ with a specific set of mass modifications at specific residues. The need
 cannot be fulfilled with FASTA alone since there is no capacity for
 encoding mass modifications on each sequence.
 
-## **Requirements**
+### Requirements
 
 The main requirements to be fulfilled are:
 
 - The format should allow more than one sequence database to be
   represented in one flat file.
-
 - The format should require minimal changes to the existing parsers.
-
 - The format should formalize the representation of all non-sequence
   associated information (identifiers, description, taxonomy, other
   structural or functional annotation data).
-
 - The format should include meta-information about the database itself
   (name, version, type of content, etc.).
-
 - Controlled vocabularies (CVs) should be pragmatically used for keys
   and values (i.e. database names, prefixes, entry keys such as
   NcbiTaxId, Protein/Gene Name).
-
 - The format should be compatible with MIAPE guidelines
   (<http://www.psidev.info/miape>), for instance MIAPE MSI.
-
 - The format should be able to support encoding proteoforms.
 
-## **Issues to be addressed**
+### Issues to be addressed
 
 The main issues to be addressed by the format are:
 
@@ -242,80 +171,68 @@ The main issues to be addressed by the format are:
   with protein identification tools. The creators of these tools are
   faced with a significant challenge to support all of these variations
   while consistently extracting the same information.
-
 - The same database file is variably processed in different search
   engines. A given database entry can contain multiple identifiers,
   which can lead to variably interpreted identifiers, which renders
   difficult the mapping of identical entries in different tools (for
-  instance the UniProtKB/Swiss-Prot AC: P02768 vs. UniProtKB/Swiss-Prot
-  ID: ALBU_HUMAN).
-
+  instance the UniProtKB/Swiss-Prot AC: `P02768` vs. UniProtKB/Swiss-Prot
+  ID: `ALBU_HUMAN`).
 - The same protein (and therefore also primary sequence) in different
-  databases can have very different identifiers (for example, P02768 in
-  UniProtKB/Swiss-Prot, NX_P02768 in neXtProt,
-  gi\|113576\|sp\|P02768.2\|ALBU_HUMAN in NCBI, and ENSP00000295897 in
+  databases can have very different identifiers (for example, `P02768` in
+  UniProtKB/Swiss-Prot, `NX_P02768` in neXtProt,
+  `gi|113576|sp|P02768.2|ALBU_HUMAN` in NCBI, and `ENSP00000295897` in
   Ensembl).
-
 - The identifier information extracted from the FASTA formats is
-  heterogeneous (gi\|113576 vs 113576 vs sp\|P02768 vs
-  gi\|113576\|sp\|P02768.2\|ALBU_HUMAN etc.). The definition and format
+  heterogeneous (`gi|113576` vs `113576` vs `sp|P02768` vs
+  `gi|113576|sp|P02768.2|ALBU_HUMAN` etc.). The definition and format
   description of the identifier should come from the DB provider
   (documentation).
-
 - Description and availability of taxonomy are also heterogeneous and
   need to be properly interpreted (Latin names, common names, NCBI
   TaxID).
-
 - Choice of the description string (variations include full or partial
   description, including or not taxonomy information, alternative names,
   truncation at a defined number of characters, etc.).
-
 - Version name or date of a specific database is often requested for
   traceability purposes and to allow reproducibility of results obtained
   from the use of a given database (number of entries, protein or gene
   names, descriptions, sequences, PTMs, etc. vary from one version to
   another).
-
 - It should be possible to store more than one sequence database in a
   single flat file. As identifiers might be identical in two or more
   “merged” databases, a mechanism (using unique database prefixes)
   should be defined to avoid this.
 
-# Notational Conventions
+## Notational Conventions
 
 The key words “MUST“, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”,
 “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” are to be
 interpreted as described in RFC 2119 \[BRADNER1\].
 
-# 
+## The Format Implementation
 
-# The Format Implementation
-
-## **The documentation**
+### The documentation
 
 The documentation of the format is divided into several documents and
 files. These files are available from the main format description page
 on the HUPO-PSI website (<http://www.psidev.info/peff>).
 
 - Main specification document (this document)
-
 - Controlled Vocabulary (CV). The CV keywords applicable for PEFF are in
   a branch of the PSI-MS CV
   (<https://github.com/HUPO-PSI/psi-ms-CV/blob/master/psi-ms.obo>),
   organized broadly as header keywords and individual entry keywords.
-
 - Example files
-
 - Reference to example implementations
 
-## **Relationship to other specifications**
+### Relationship to other specifications
 
 The specification described in this document is not being developed in
 isolation; indeed, it is designed to be complementary to, and thus used
 in conjunction with, several existing and emerging models. Related
 specifications include the following:
 
-1.  *MIAPE-MSI* (<http://www.psidev.info/miape>) The “Minimum
+1. *MIAPE-MSI* (<http://www.psidev.info/miape>) The “Minimum
     Information About a Proteomics Experiment: Mass Spectrometry
     Informatics” document identifies the minimum information required to
     report the use of a MS-based peptide and protein identification and
@@ -329,14 +246,12 @@ specifications include the following:
     version of the database, and the number of entries. All these
     concepts are supported in PEFF via the CV terms DbName,
     DbDescription, DbVersion, and NumberOfEntries.
-
 2.  *mzIdentML* (<http://www.psidev.info/mzidentml>). The mzIdentML
     specification is developed by PSI as a standard to capture the
     output of search engines that assign mass spectra to protein or
     peptide sequences. For searches performed using a PEFF file, the
     downstream result in mzIdentML MUST encode a reference to the PEFF
     file used. This is already supported in mzIdentML.
-
 3.  *mzTab* (<http://www.psidev.info/mztab>). The mzTab specification is
     developed by PSI as a standard to report proteomics and metabolomics
     results in a tab-delimited text file format. For searches performed
@@ -344,34 +259,38 @@ specifications include the following:
     encode a reference to the PEFF file used. This is already supported
     in mzTab.
 
-##  **The common sequence database format description**
+### The common sequence database format description
 
 The format has the form of a text file with two sections, a file header
 section and a section containing the individual sequence entries. The
 two sections MUST be placed in the following order
 
 - Section 1: The file header section.
-
 - Section 2: The individual sequence entries section.
 
 The characters allowed are the set of ASCII characters. A more
 constrained set of characters can be defined for specific sections of
 the file.
 
-All lines in the file MUST end with LF (ASCII 10). A CR (ASCII 13) MAY
-precede the LF and MUST be ignored by parsers.
+All lines in the file MUST end with `LF` (ASCII 10). A `CR` (ASCII 13) MAY
+precede the `LF` and MUST be ignored by parsers.
 
 Descriptors of the information are defined as keywords in a special
 branch of the PSI-MS CV. The CV is available in OBO format at
 <https://github.com/HUPO-PSI/psi-ms-CV/blob/master/psi-ms.obo>.
 
-[TABLE]
-
-Figure 1: Graphical representation of the PEFF file structure. In this
+<figure>
+![Figure 1](../assets/images/PEFF/figure_1.png)
+<figcaption>Figure 1: Graphical representation of the PEFF file structure. In this
 example, the file has *m* databases, database 1 has *n* entries,
-database *m* has *o* entries
+database *m* has *o* entries</figcaption>
+</figure>
 
-### **PEFF file section 1: The file header section**
+
+
+
+
+#### PEFF file section 1: The file header section
 
 The file header section contains all necessary information to describe
 and reference the represented sequence database(s). This includes
@@ -379,7 +298,7 @@ information such as the database(s) name, source, version, size,
 sequence type, etc. This meta-data section includes mandatory and
 optional elements.
 
-*Format of the file header section*
+##### Format of the file header section
 
 The file header section contains two types of information blocks: the
 file description block and the sequence database description block. The
@@ -393,11 +312,13 @@ The format of the file description block is the following:
 - The first line of this section is also the first line of the file. It
   MUST be:
 
+
 > *\# PEFF N.N*
 >
 > where N.N represents the version number of the PEFF format, currently
 > 1.0. Parsers SHOULD check this value and compare it to what they are
 > prepared to interpret;
+
 
 - It MAY be followed by one or more general comment lines, which each
   have the following format:
@@ -506,7 +427,7 @@ evidences, other custom-defined information. They also can imply an
 impact on the interpretation of the data provided in the individual
 sequence database section (sequence and annotation).
 
-### **Defining custom keys in the sequence database description block for use in the sequence entries section**
+#### **Defining custom keys in the sequence database description block for use in the sequence entries section**
 
 Most of the keys found in each of the individual sequence entries
 (described below in 3.3.3) are defined in the CV. However, it is
@@ -559,7 +480,7 @@ description lines like this:
 
 \SecondaryStructure=(617\|673\|ncithesaurus:C47937\|Helix)
 
-### **Section 2: The individual sequence entries section**
+#### **Section 2: The individual sequence entries section**
 
 The individual sequence entries section contains the actual sequences,
 their associated identifiers and additional descriptors. The format is
@@ -768,7 +689,7 @@ CLRMELENILGQLSVLSASQDPLYINIERAEEPTAGGSLELPGRDQPYSGAGDGSGMGAV
 
 GGTPSDCRYILTPGGLAEQPGQAEHQPESPLNETQRLLLLQQGLLPHSSC
 
-### **Recommendations on and order of the keys in a description line**
+#### **Recommendations on and order of the keys in a description line**
 
 After the sequence identifier, which MUST start the description line,
 there is no mandatory order for placing the keys. However it is
@@ -784,7 +705,7 @@ the sequence. In the case where they MUST be present in the sequence,
 the sequence database section MUST contain a ProteoformDb=true
 *key-value* pair (see section 3.3.3).
 
-### **Definition of OptionalTag elements**
+#### **Definition of OptionalTag elements**
 
 In all header keys that allow an optional tag component, this optional
 tag MAY be placed as the last component, example:
@@ -805,20 +726,20 @@ the user, or based on export options selected by the user at the
 provider web site). Nonetheless, this feature is somewhat experimental
 to see how the community wishes to use it.
 
-### **Definition of complex header keys**
+#### **Definition of complex header keys**
 
 Most keys in the CV are self-explanatory in the CV itself. However, some
 terms are sufficiently complex and central to the format that they are
 described in detail in this document in the following sections.
 
-### **Variant header key**
+#### **Variant header key**
 
 The header key “Variant” was deprecated in 2015 during the refinement of
 the format in favor of using “VariantSimple” and “VariantComplex”. Some
 PEFF files, e.g. from neXtProt, were produced with the “Variant” header
 key before it was deprecated. This term MUST no longer be used.
 
-### **VariantSimple header key**
+#### **VariantSimple header key**
 
 The header key “*VariantSimple*” is used to encode all single amino acid
 (or nucleotide) substitutions. The following description is heavily
@@ -846,7 +767,7 @@ sequence search engines to support these simple variations in advance of
 more complex variations, which are considerably more difficult to
 implement.
 
-### **VariantComplex header key**
+#### **VariantComplex header key**
 
 The header key *VariantComplex* is used to encode all sequence
 variations more complex than a single amino acid (or nucleotide)
@@ -869,7 +790,7 @@ databases, \VariantComplex should encode nucleotide-based variations.
 | (100\|100\|\[AEQ\]P)      | An insertion before the P originally at position 100 with any of A or E or Q.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **ILLEGAL**               | Not a legal *VariantComplex*. This MUST be encoded as three separate *VariantComplex*. No regular expressions are allowed in this item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
-### **ModResUnimod header key**
+#### **ModResUnimod header key**
 
 The header key *ModResUnimod* is used to encode mass modifications on
 amino acids (residues) using the Unimod CV \[CREASY1\]. Two other terms
@@ -904,7 +825,7 @@ keyword as described in section 3.3.4.
 | (?\|UNIMOD:21\|Phospho)                | A phosphorylation for which a position is unknown. If a position range is known, it MAY be encoded in the Optional tag component. However a reader is not supposed to be able to interpret this. |
 |                                        |                                                                                                                                                                                                  |
 
-### **ModResPsi header key**
+#### **ModResPsi header key**
 
 The header key *ModResPsi* is used to encode mass modifications on amino
 acids (residues) using the PSI-MOD CV \[MONTECCHI-PALAZZI1\]. Two other
@@ -939,7 +860,7 @@ header via the *CustomTag* keyword as described in section 3.3.4.
 | (100\|MOD:00046\|) ILLEGAL                              | Not legal. The full name from the OBO file (or equivalent) MUST be provided.                                                                                                        |
 | (?\|MOD:00046\|O-phospho-L-serine)                      | A phosphoserine for which a position is unknown. If a position range is known, it MAY be encoded in the Optional tag component. However a reader is not required to interpret this. |
 
-### **ModRes header key**
+#### **ModRes header key**
 
 The header key *ModRes* is used to encode mass modifications on amino
 acids (residues) where a CV entry is available in neither Unimod nor
@@ -975,7 +896,7 @@ alternative approach if this becomes a common necessity is to add a
 | (100\|Phosphorylation) ILLEGAL             | An empty region is permitted as the second element where the identifier should go, but skipping the second element is not permitted.                                                                      |
 |                                            |                                                                                                                                                                                                           |
 
-### **Processed header key**
+#### **Processed header key**
 
 The header key *Processed* is used to encode post-translational
 processing of the protein, such that the mature form of the protein is
@@ -994,15 +915,15 @@ processing keyword”.
 | (1\|40\|\|signal peptide) ILLEGAL       | Not legal; an accession number from the PEFF CV MUST be provided.                       |
 | (1\|40\|PEFF:0001021\|) ILLEGAL         | Not legal; the term name from the PEFF CV MUST be provided.                             |
 
-## **Advanced features for proteoforms and other combinations of annotations**
+### **Advanced features for proteoforms and other combinations of annotations**
 
 A proteoform is defined as any one of the multitude of protein forms
 that can result from a single gene, including sequence variations, PTMs,
 and processing results \[SMITH\].
 
-### **Long form recommendation for Proteoforms: The ProteoformDb=true key-value pair**
+#### **Long form recommendation for Proteoforms: The ProteoformDb=true key-value pair**
 
-### 
+####
 
 Specific proteoforms can be described in PEFF entries. When
 ProteoformDb=true is specified, structural annotations such as PTMs,
@@ -1030,9 +951,9 @@ vice versa is possible for some annotations, although there may be loss
 of information in some cases. As of this writing, this has been tried
 carefully.
 
-### **Annotation identifiers enabling compact form recommendation for Proteoforms: The HasAnnotationIdentifiers=true key-value pair**
+#### **Annotation identifiers enabling compact form recommendation for Proteoforms: The HasAnnotationIdentifiers=true key-value pair**
 
-### 
+####
 
 Specifying proteoforms with ProteoformDB=true as described in the
 previous section is precise but can be highly repetitive, potentially
@@ -1118,9 +1039,9 @@ since ProteoformDb=true indicates that all specified annotations are
 required. When these flags are not true, they may either have the value
 of false or be omitted entirely.
 
-##  **Additional considerations**
+###  **Additional considerations**
 
-### **Representation of splicing variants**
+#### **Representation of splicing variants**
 
 When splicing variants (alternative exon splicing products) are to be
 represented for a given gene/protein in a sequence database, they SHOULD
@@ -1129,7 +1050,7 @@ DbUniqueId MUST be different for each of these sequence entries. Such
 corresponding sequences MAY be discriminated by a different suffix
 (\>sp:P01234-1 and \>sp:P01234-2).
 
-### **Representation of processed sequences**
+#### **Representation of processed sequences**
 
 Processed sequences (removal of precursor peptide, active chain, etc.)
 SHOULD be represented with annotations in the sequence description line
@@ -1140,11 +1061,11 @@ specific PTMs), processed sequences MAY be represented in separate
 sequence entries; in this case, the DbUniqueId MUST be different for
 each of these sequence entries.
 
-### **File extension**
+#### **File extension**
 
 The suggested file extension is .peff (PSI Extended FASTA Format).
 
-### **PEFF File Validation**
+#### **PEFF File Validation**
 
 As new PEFF writers are developed, it is important to have a consistent
 validator to check the results. At the time of this writing there is one
@@ -1155,7 +1076,7 @@ available, they will be linked from the PSI PEFF page:
 
 <http://www.psidev.info/peff>
 
-### **PEFF Reference Implementation**
+#### **PEFF Reference Implementation**
 
 One of the benefits of PEFF is that it is quite similar to the FASTA
 format. Since most relevant tools already have a FASTA parser, it seems
@@ -1178,7 +1099,7 @@ described at the PEFF web site:
 Links to additional implementations in Python, PHP, Java, etc. are
 provides as links on this same web page.
 
-# Authors Information
+## Authors Information
 
 Pierre-Alain Binz
 
@@ -1250,7 +1171,7 @@ Institute for Systems Biology, Seattle WA, USA
 
 edeutsch@systemsbiology.org
 
-# Contributors
+## Contributors
 
 In addition to the authors, a number of additional contributions have
 been made during the preparation process. The contributors who actively
@@ -1278,7 +1199,7 @@ Geneva, Switzerland
 
 \- Luis Mendoza, Institute for Systems Biology, Seattle, WA, USA
 
-# Intellectual Property Statement
+## Intellectual Property Statement
 
 The PSI takes no position regarding the validity or scope of any
 intellectual property or other rights that might be claimed to pertain
@@ -1297,7 +1218,7 @@ which may cover technology that may be required to practice this
 recommendation. Please address the information to the PSI Chair (see
 contacts information at PSI website).
 
-# Copyright Notice
+## Copyright Notice
 
 Copyright (C) Proteomics Standards Initiative (2019). All Rights
 Reserved.
@@ -1325,18 +1246,18 @@ WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY
 RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A
 PARTICULAR PURPOSE."
 
-# Glossary
+## Glossary
 
 In this specification, the following special terms are used throughout:
 
-## **Key**
+### **Key**
 
 The term “Key” corresponds to a annotation concept, and is used to
 denote that the value following the “Key” provides one or more instances
 of that concept. In the file header, “Keys” are preceded by “# “. In the
 entry description lines, “Keys” are preceded by a “\\” character.
 
-## **Item**
+### **Item**
 
 The term “Item” corresponds to an instance of an annotation. If a single
 “Item” is present, then it is not enclosed in parentheses. If there are
@@ -1346,7 +1267,7 @@ multiple items, they are enclosed in parentheses. For example:
 
 \Key=(Item1)(Item2)
 
-## **Component**
+### **Component**
 
 The term “Component” corresponds to an individual element of an Item. If
 there is more than one component in an Item, they are separated by “\|”
@@ -1356,7 +1277,7 @@ characters. For example:
 
 \Key=(Component1\|Component2)(Component1\|Component2\|Component3)
 
-## **Tag / OptionalTag**
+### **Tag / OptionalTag**
 
 The term “Tag” or “OptionalTag” corresponds to the last component is
 some items that provide a user-attached description to an item. For
@@ -1366,11 +1287,11 @@ example:
 
 See section 3.3.5 for additional discussion about the OptionalTag
 
-# References
+## References
 
 \[APWEILER1\] Apweiler R., Bairoch A., Wu C.H., Barker W.C., Boeckmann
 B., Ferro S., Gasteiger E., Huang H., Lopez R., Magrane M., Martin M.J.,
-Natale D.A., O'Donovan C., Redaschi N., Yeh L.S.  
+Natale D.A., O'Donovan C., Redaschi N., Yeh L.S.
 UniProt: the Universal Protein knowledgebase. Nucleic Acids Res.
 32:D115-119(2004).
 
