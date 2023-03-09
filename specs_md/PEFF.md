@@ -64,7 +64,6 @@ examples, and validators, is available at [http://www.psidev.info/peff](http://w
       - [Processed header key](#processed-header-key)
     - [Advanced features for proteoforms and other combinations of annotations](#advanced-features-for-proteoforms-and-other-combinations-of-annotations)
       - [Long form recommendation for Proteoforms: The `ProteoformDb=true` key-value pair](#long-form-recommendation-for-proteoforms-the-proteoformdbtrue-key-value-pair)
-      - [](#)
       - [Annotation identifiers enabling compact form recommendation for Proteoforms: The `HasAnnotationIdentifiers=true` key-value pair](#annotation-identifiers-enabling-compact-form-recommendation-for-proteoforms-the-hasannotationidentifierstrue-key-value-pair)
     - [Additional considerations](#additional-considerations)
       - [Representation of splicing variants](#representation-of-splicing-variants)
@@ -305,7 +304,7 @@ The format of the file description block is the following:
   MUST be:
 
 ```txt
-*\# PEFF N.N*
+\# PEFF N.N
 ```
 
 where `N.N` represents the version number of the PEFF format, currently
@@ -316,7 +315,7 @@ prepared to interpret;
   have the following format:
 
 ```txt
-*\# GeneralComment=value*
+\# GeneralComment=value
 ```
 
 (where `value` is a string of text)
@@ -324,7 +323,7 @@ prepared to interpret;
 - The description block MUST end with the following line:
 
 ```txt
-# //
+//
 ```
 
 If there is a `GeneralComment`, it MUST not be empty.
@@ -335,7 +334,7 @@ The format of the sequence database description blocks is as follows:
 - Each piece of information MUST have the following format:
 
 ```txt
-*\# key=value*
+\# key=value
 ```
 
 where the element `key` MUST be a keyword in the PSI-MS CV under the
@@ -345,8 +344,9 @@ defined for each key in the CV.
   follow the following format:
 
 ```txt
-*\# DbName=value,* (where *value* is the database name)
+\# DbName=value,
 ```
+ (where *value* is the database name)
 
 - The following five `key` elements MUST also be present: `Prefix`, `DbVersion`, `DbSource`, `NumberOfEntries`, `SequenceType`
 
@@ -544,6 +544,7 @@ Generic example: \key=(item1)(item2)
 
 - Amino acid table:
 
+
 | 1 one-letter code | Amino acid name                                 |
 |-----------------------|-----------------------------------------------------|
 | `A`                     | Alanine                                             |
@@ -606,13 +607,10 @@ Generic example: \key=(item1)(item2)
 ##### Generic illustration:
 
 ```txt
-> \>*Prefix:DbUniqueID1 \key=value \key=value*
->
-> SEQUENCESEQUENCE
->
-> \>*Prefix:DbUniqueID2 \key=value \key=value*
->
-> SEQUENCESEQSEQUENCE
+\>Prefix:DbUniqueID1 \key=value \key=value
+SEQUENCESEQUENCE
+\>Prefix:DbUniqueID2 \key=value \key=value
+SEQUENCESEQSEQUENCE
 ```
 
 ##### Real example
@@ -856,7 +854,6 @@ and processing results [^SMITH].
 
 #### Long form recommendation for Proteoforms: The `ProteoformDb=true` key-value pair
 
-####
 
 Specific proteoforms can be described in PEFF entries. When
 `ProteoformDb=true` is specified, structural annotations such as PTMs,
