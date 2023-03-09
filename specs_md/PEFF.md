@@ -1001,7 +1001,6 @@ may be uploaded and validated online. If additional validators become
 available, they will be linked from the PSI PEFF page: [http://www.psidev.info/peff](http://www.psidev.info/peff)
 
 
-
 #### PEFF Reference Implementation
 
 One of the benefits of PEFF is that it is quite similar to the FASTA
@@ -1020,17 +1019,18 @@ annotations in a PEFF file based on a easily managed columnar file of
 annotations to change. Access to this reference implementation is
 described at the PEFF web site: [http://www.psidev.info/peff](http://www.psidev.info/peff)
 
-Links to additional implementations in Python, PHP, Java, etc. are
-provides as links on this same web page.
+Links to additional implementations in Python, PHP, Java, etc. are provided as links on this same web page.
 
 ## Authors Information
 
-Pierre-Alain Binz
+<dl>
+  <dt>Pierre-Alain Binz</dt>
+  <dd>
+    CHUV Centre Universitaire Hospitalier Vaudois, CH-1011 Lausanne 14,
+    Switzerland (pierre-alain.binz@chuv.ch)
+  </dd>
+</dl>
 
-CHUV Centre Universitaire Hospitalier Vaudois, CH-1011 Lausanne 14,
-Switzerland
-
-pierre-alain.binz@chuv.ch
 
 Jim Shofstahl
 
@@ -1202,7 +1202,7 @@ example:
 \Key=(Component1\|Component2\|OptionalTag)(Component1\|Component2\|OptionalTag)
 ```
 
-See section 3.3.5 for additional discussion about the OptionalTag.
+See [section 3.3.5](#definition-of-optionaltag-elements) for additional discussion about the OptionalTag.
 
 ## References
 
