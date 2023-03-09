@@ -1029,34 +1029,26 @@ Links to additional implementations in Python, PHP, Java, etc. are provided as l
     CHUV Centre Universitaire Hospitalier Vaudois, CH-1011 Lausanne 14,
     Switzerland (pierre-alain.binz@chuv.ch)
   </dd>
+    <dt>Jim Shofstahl</dt>
+  <dd>
+    Thermo Fisher Scientific | 355 River Oaks Parkway | San Jose | CA
+95134 | USA (jim.shofstahl@thermofisher.com)
+  </dd>
+    <dt>Juan Antonio Vizcaíno</dt>
+  <dd>
+    European Bioinformatics Institute (EMBL-EBI), Hinxton, Cambridge, United
+Kingdom (juan@ebi.ac.uk)
+  </dd>
+    <dt>Harald Barsnes</dt>
+  <dd>
+    Proteomics Unit, Department of Biomedicine, University of Bergen, Norway (harald.barsnes@uib.no)
+  </dd>
+    <dt>Robert Chalkley</dt>
+  <dd>
+    University of California, San Francisco (chalkley@cgl.ucsf.edu)
+  </dd>
 </dl>
 
-
-Jim Shofstahl
-
-Thermo Fisher Scientific \| 355 River Oaks Parkway \| San Jose \| CA
-95134 \| USA
-
-jim.shofstahl@thermofisher.com
-
-Juan Antonio Vizcaíno
-
-European Bioinformatics Institute (EMBL-EBI), Hinxton, Cambridge, United
-Kingdom
-
-juan@ebi.ac.uk
-
-Harald Barsnes
-
-Proteomics Unit, Department of Biomedicine, University of Bergen, Norway
-
-harald.barsnes@uib.no
-
-Robert Chalkley
-
-University of California, San Francisco
-
-chalkley@cgl.ucsf.edu
 
 Karl Clauser
 
