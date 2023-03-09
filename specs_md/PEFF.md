@@ -47,21 +47,21 @@ examples, and validators, is available at [http://www.psidev.info/peff](http://w
     - [The common sequence database format description](#the-common-sequence-database-format-description)
       - [PEFF file section 1: The file header section](#peff-file-section-1-the-file-header-section)
         - [Format of the file header section](#format-of-the-file-header-section)
-      - [Defining custom keys in the sequence database description block for use in the sequence entries section](#defining-custom-keys-in-the-sequence-database-description-block-for-use-in-the-sequence-entries-section)
+        - [Defining custom keys in the sequence database description block for use in the sequence entries section](#defining-custom-keys-in-the-sequence-database-description-block-for-use-in-the-sequence-entries-section)
       - [Section 2: The individual sequence entries section](#section-2-the-individual-sequence-entries-section)
         - [Format of the individual sequence entries](#format-of-the-individual-sequence-entries)
         - [Generic illustration:](#generic-illustration)
         - [Real example](#real-example)
       - [Recommendations on and order of the keys in a description line](#recommendations-on-and-order-of-the-keys-in-a-description-line)
-      - [Definition of OptionalTag elements](#definition-of-optionaltag-elements)
+      - [Definition of `OptionalTag` elements](#definition-of-optionaltag-elements)
       - [Definition of complex header keys](#definition-of-complex-header-keys)
       - [Variant header key](#variant-header-key)
       - [VariantSimple header key](#variantsimple-header-key)
       - [VariantComplex header key](#variantcomplex-header-key)
       - [ModResUnimod header key](#modresunimod-header-key)
       - [ModResPsi header key](#modrespsi-header-key)
-      - [ModRes header key](#modres-header-key)
-      - [Processed header key](#processed-header-key)
+      - [`ModRes` header key](#modres-header-key)
+      - [`Processed` header key](#processed-header-key)
     - [Advanced features for proteoforms and other combinations of annotations](#advanced-features-for-proteoforms-and-other-combinations-of-annotations)
       - [Long form recommendation for Proteoforms: The `ProteoformDb=true` key-value pair](#long-form-recommendation-for-proteoforms-the-proteoformdbtrue-key-value-pair)
       - [Annotation identifiers enabling compact form recommendation for Proteoforms: The `HasAnnotationIdentifiers=true` key-value pair](#annotation-identifiers-enabling-compact-form-recommendation-for-proteoforms-the-hasannotationidentifierstrue-key-value-pair)
@@ -401,7 +401,7 @@ evidences, other custom-defined information. They also can imply an
 impact on the interpretation of the data provided in the individual
 sequence database section (sequence and annotation).
 
-#### Defining custom keys in the sequence database description block for use in the sequence entries section
+##### Defining custom keys in the sequence database description block for use in the sequence entries section
 
 Most of the keys found in each of the individual sequence entries
 (described below in 3.3.3) are defined in the CV. However, it is
@@ -636,7 +636,7 @@ the sequence. In the case where they MUST be present in the sequence,
 the sequence database section MUST contain a ProteoformDb=true
 `key-value` pair (see section 3.3.3).
 
-#### Definition of OptionalTag elements
+#### Definition of `OptionalTag` elements
 
 In all header keys that allow an optional tag component, this optional
 tag MAY be placed as the last component, example:
@@ -782,16 +782,16 @@ header via the `CustomTag` keyword as described in section 3.3.4.
 
 | Example Value                                           | Interpretation                                                                                                                                                                      |
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| (100\|MOD:00046\|O-phospho-L-serine)                    | Potential phosphorylation of a serine at position 100 (required, not potential, if a proteoform database)                                                                           |
-| (12:100\|MOD:00046\|O-phospho-L-serine)                 | Potential phosphorylation of a serine at position 100, with an identifier of "12", that may be referenced in \Proteoform or in order contexts (see section 3.4.2 for details)       |
-| (100,157\|MOD:00046\|O-phospho-L-serine)                | Potential phosphorylation of a serine at positions 100 and/or 157                                                                                                                   |
-| (100,157,214\|MOD:00046\|O-phospho-L-serine\|uncertain) | Potential phosphorylation of a serine at positions 100 157, and/or 214, with an optional tag of "uncertain"                                                                         |
-| (100\|\|O-phospho-L-serine) ILLEGAL                     | Not legal. The MOD:00046 accession MUST be provided                                                                                                                                 |
+| `(100\|MOD:00046\|O-phospho-L-serine)`                    | Potential phosphorylation of a serine at position 100 (required, not potential, if a proteoform database)                                                                           |
+| `(12:100\|MOD:00046\|O-phospho-L-serine)`                 | Potential phosphorylation of a serine at position 100, with an identifier of "12", that may be referenced in \Proteoform or in order contexts (see section 3.4.2 for details)       |
+| `(100,157\|MOD:00046\|O-phospho-L-serine)`                | Potential phosphorylation of a serine at positions 100 and/or 157                                                                                                                   |
+| `(100,157,214\|MOD:00046\|O-phospho-L-serine\|uncertain)` | Potential phosphorylation of a serine at positions 100 157, and/or 214, with an optional tag of "uncertain"                                                                         |
+| `(100\|\|O-phospho-L-serine)` ILLEGAL                     | Not legal. The MOD:00046 accession MUST be provided                                                                                                                                 |
 |                                                         |                                                                                                                                                                                     |
-| (100\|MOD:00046\|) ILLEGAL                              | Not legal. The full name from the OBO file (or equivalent) MUST be provided.                                                                                                        |
-| (?\|MOD:00046\|O-phospho-L-serine)                      | A phosphoserine for which a position is unknown. If a position range is known, it MAY be encoded in the Optional tag component. However a reader is not required to interpret this. |
+| `(100\|MOD:00046\|) ILLEGAL`                              | Not legal. The full name from the OBO file (or equivalent) MUST be provided.                                                                                                        |
+| `(?\|MOD:00046\|O-phospho-L-serine)`                      | A phosphoserine for which a position is unknown. If a position range is known, it MAY be encoded in the Optional tag component. However a reader is not required to interpret this. |
 
-#### ModRes header key
+#### `ModRes` header key
 
 The header key `ModRes` is used to encode mass modifications on amino
 acids (residues) where a CV entry is available in neither Unimod nor
@@ -820,16 +820,16 @@ alternative approach if this becomes a common necessity is to add a
 
 | Example Value                              | Interpretation                                                                                                                                                                                            |
 |--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| (100\|\|N-linked (GlcNAc...))              | The amino acid at position 100 has N-linked glycosylation modification/s of unknown composition.                                                                                                          |
-| (100,178\|\|N-linked (GlcNAc...)\|invitro) | The amino acids at positions 100 and/or 178 have possible N-linked glycosylation modification/s of unknown composition, with an optional tag of "invitro".                                                |
-| (100\|CustomMod:22\|Floxilation)           | The amino acid at position 100 has a potential floxilation modification as described in a custom CV. This will not be usable by most reading software, but could potentially be used by custom workflows. |
-| (100\|\|Phosphorylation)                   | The amino acid at position 100 has a potential phosphorylation. Note that although this is permitted, the use of either ModResPsi or ModResUnimod CV when available is strongly encouraged.               |
-| (100\|Phosphorylation) ILLEGAL             | An empty region is permitted as the second element where the identifier should go, but skipping the second element is not permitted.                                                                      |
+| `(100\|\|N-linked (GlcNAc...))`              | The amino acid at position 100 has N-linked glycosylation modification/s of unknown composition.                                                                                                          |
+| `(100,178\|\|N-linked (GlcNAc...)\|invitro)` | The amino acids at positions 100 and/or 178 have possible N-linked glycosylation modification/s of unknown composition, with an optional tag of "invitro".                                                |
+| `(100\|CustomMod:22\|Floxilation)`           | The amino acid at position 100 has a potential floxilation modification as described in a custom CV. This will not be usable by most reading software, but could potentially be used by custom workflows. |
+| `(100\|\|Phosphorylation) `                  | The amino acid at position 100 has a potential phosphorylation. Note that although this is permitted, the use of either ModResPsi or ModResUnimod CV when available is strongly encouraged.               |
+| `(100\|Phosphorylation) ILLEGAL`             | An empty region is permitted as the second element where the identifier should go, but skipping the second element is not permitted.                                                                      |
 |                                            |                                                                                                                                                                                                           |
 
-#### Processed header key
+#### `Processed` header key
 
-The header key *Processed* is used to encode post-translational
+The header key `Processed `is used to encode post-translational
 processing of the protein, such that the mature form of the protein is
 only a subset of the entire provided sequence. The format of this term
 is (`startPosition\|endPosition\|accession\|name\|OptionalTag`). See the
@@ -841,10 +841,10 @@ processing keyword".
 
 | Example Value                           | Interpretation                                                                          |
 |-----------------------------------------|-----------------------------------------------------------------------------------------|
-| (1\|40\|PEFF:0001021\|signal peptide)   | Residues 1-40 are a signal peptide sequence that is cleaved off after translation       |
-| (41\|890\|PEFF:0001020\|mature protein) | Residues 41-890 are the mature form of the protein after the signal sequence is removed |
-| (1\|40\|\|signal peptide) ILLEGAL       | Not legal; an accession number from the PEFF CV MUST be provided.                       |
-| (1\|40\|PEFF:0001021\|) ILLEGAL         | Not legal; the term name from the PEFF CV MUST be provided.                             |
+| `(1\|40\|PEFF:0001021\|signal peptide)`   | Residues 1-40 are a signal peptide sequence that is cleaved off after translation       |
+| `(41\|890\|PEFF:0001020\|mature protein)` | Residues 41-890 are the mature form of the protein after the signal sequence is removed |
+| `(1\|40\|\|signal peptide) ILLEGAL`       | Not legal; an accession number from the PEFF CV MUST be provided.                       |
+| `(1\|40\|PEFF:0001021\|) ILLEGAL`         | Not legal; the term name from the PEFF CV MUST be provided.                             |
 
 ### Advanced features for proteoforms and other combinations of annotations
 
@@ -853,7 +853,6 @@ that can result from a single gene, including sequence variations, PTMs,
 and processing results [^SMITH].
 
 #### Long form recommendation for Proteoforms: The `ProteoformDb=true` key-value pair
-
 
 Specific proteoforms can be described in PEFF entries. When
 `ProteoformDb=true` is specified, structural annotations such as PTMs,
@@ -883,7 +882,7 @@ carefully.
 
 #### Annotation identifiers enabling compact form recommendation for Proteoforms: The `HasAnnotationIdentifiers=true` key-value pair
 
-Specifying proteoforms with ProteoformDB=true as described in the
+Specifying proteoforms with `ProteoformDB=true` as described in the
 previous section is precise but can be highly repetitive, potentially
 leading to enormous files. A far more compact form is supported via
 annotation identifiers and references. In this form, each annotation
@@ -1170,7 +1169,7 @@ In this specification, the following special terms are used throughout:
 The term "Key" corresponds to a annotation concept, and is used to
 denote that the value following the "Key" provides one or more instances
 of that concept. In the file header, "Keys" are preceded by "# ". In the
-entry description lines, "Keys" are preceded by a "\\" character.
+entry description lines, "Keys" are preceded by a `\` character.
 
 ### Item
 
@@ -1180,18 +1179,16 @@ multiple items, they are enclosed in parentheses. For example:
 
 ```txt
 \Key=Item
-
 \Key=(Item1)(Item2)
 ```
 ### Component
 
 The term "Component" corresponds to an individual element of an Item. If
-there is more than one component in an Item, they are separated by "\|"
+there is more than one component in an Item, they are separated by `|`
 characters. For example:
 
 ```txt
 \Key=Component1\|Component2
-
 \Key=(Component1\|Component2)(Component1\|Component2\|Component3)
 ```
 
@@ -1205,7 +1202,7 @@ example:
 \Key=(Component1\|Component2\|OptionalTag)(Component1\|Component2\|OptionalTag)
 ```
 
-See section 3.3.5 for additional discussion about the OptionalTag
+See section 3.3.5 for additional discussion about the OptionalTag.
 
 ## References
 
