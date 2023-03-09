@@ -1,18 +1,11 @@
 PEFF: A Common Sequence Database Format for Proteomics
 ======================================================
 
-
-{% note %}
-
-**Status of this document:**
-
-This document provides information to the proteomics community about a
-common sequence database format for proteomics. Distribution is
-unlimited.
-
-Version 1.0 FINAL
-
-{% endnote %}
+> **Status of this document**
+> 
+> This document provides information to the proteomics community about a common sequence database format for proteomics. Distribution isunlimited
+> 
+> Version 1.0 FINAL
 
 ## Abstract
 
