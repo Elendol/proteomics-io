@@ -280,15 +280,11 @@ branch of the PSI-MS CV. The CV is available in OBO format at
 <https://github.com/HUPO-PSI/psi-ms-CV/blob/master/psi-ms.obo>.
 
 <figure>
-![Figure 1](../assets/images/PEFF/figure_1.png)
+<img src="../assets/images/PEFF/figure_1.png" alt="Figure 1" />
 <figcaption>Figure 1: Graphical representation of the PEFF file structure. In this
 example, the file has *m* databases, database 1 has *n* entries,
 database *m* has *o* entries</figcaption>
 </figure>
-
-
-
-
 
 #### PEFF file section 1: The file header section
 
