@@ -1,0 +1,22 @@
+[book]
+language = "en"
+multilingual = false
+src = "src"
+title = "proteomics-io"
+
+[build]
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
+after = ["links"]
+
+[preprocessor.footnote]
+
+[preprocessor.cmdrun]
+
+[output.html]
+git-repository-url = "https://github.com/Elendol/proteomics-io/"
+git-branch = "main"
+additional-css = ["assets/mdbook-admonish.css"]
+edit-url-template = "https://github.com/Elendol/proteomics-io/edit/main/{path}"
