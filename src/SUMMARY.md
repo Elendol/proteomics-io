@@ -4,23 +4,23 @@
 
 # Pre-processing
 
-- [PEFF - PSI Extended FASTA Format](./PEFF/index.md)
-- [mzSpecLib - A standard format to exchange/distribute spectral libraries](./mzSpecLib/index.md)
-- [mzQC - Reporting and exchange format for mass spectrometry quality control data](./mzQC/index.md)
-- [mzPAF - mzPAF Peak Annotation Format](./mzPAF/index.md)
-- [usi - Universal Spectrum Identifier for Mass Spectrometry](./usi/index.md)
+- [PEFF - PSI Extended FASTA Format]()
+- [mzSpecLib - A standard format to exchange/distribute spectral libraries]()
+- [mzQC - Reporting and exchange format for mass spectrometry quality control data]()
+- [mzPAF - mzPAF Peak Annotation Format]()
+- [usi - Universal Spectrum Identifier for Mass Spectrometry]()
 
 # Post-processing
 
-- [mzTab - Reporting MS-based Proteomics and Metabolomics Results](./mzTab/index.md)
-- [mzIdentML - Reporting Identifications in MS-based Proteomics Experiments](./mzIdentML/index.md)
-- [ProForma - Proteoform and Peptidoform Notation](./proforma/index.md)
+- [mzTab - Reporting MS-based Proteomics and Metabolomics Results]()
+- [mzIdentML - Reporting Identifications in MS-based Proteomics Experiments]()
+- [ProForma - Proteoform and Peptidoform Notation]()
 
 # Controlled Vocabularies
 
-- [psi-ms-CV - mass spectrometry CV](./psi-ms-CV/index.md)
-- [psi-mod-CV - Protein Modifications Ontology](./psi-mod-CV/index.md)
-- [xlmod-CV - Ontology for chemical cross linkers ](./xlmod-CV/index.md)
+- [psi-ms-CV - mass spectrometry CV]()
+- [psi-mod-CV - Protein Modifications Ontology]()
+- [xlmod-CV - Ontology for chemical cross linkers ]()
 
 
 -----------
