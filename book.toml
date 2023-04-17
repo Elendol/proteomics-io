@@ -15,6 +15,10 @@ after = ["links"]
 
 [preprocessor.cmdrun]
 
+[preprocessor.bib]
+bibliography = "proteomics-io.bib"
+hb-tpl = "../templates/biblio.hbs"
+
 [output.html]
 git-repository-url = "https://github.com/Elendol/proteomics-io/"
 git-branch = "main"

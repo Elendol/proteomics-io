@@ -14,7 +14,7 @@
 
 - [mzTab - Reporting MS-based Proteomics and Metabolomics Results]()
 - [mzIdentML - Reporting Identifications in MS-based Proteomics Experiments]()
-- [ProForma - Proteoform and Peptidoform Notation]()
+- [ProForma v2 - Proteoform and Peptidoform Notation](./proforma_v2/index.md)
 
 # Controlled Vocabularies
 
@@ -22,7 +22,4 @@
 - [psi-mod-CV - Protein Modifications Ontology]()
 - [xlmod-CV - Ontology for chemical cross linkers ]()
 
-
 -----------
-
-[Credits](CREDITS.md)
